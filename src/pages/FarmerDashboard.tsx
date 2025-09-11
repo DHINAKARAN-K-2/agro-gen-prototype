@@ -21,6 +21,7 @@ import {
   Bell
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import VoiceAssistantModal from "@/components/VoiceAssistantModal";
 
 const FarmerDashboard = () => {
   const navigate = useNavigate();
@@ -182,22 +183,29 @@ const FarmerDashboard = () => {
               <CardContent>
                 <div className="flex items-center space-x-4 mb-4">
                   <Button 
-                    variant={voiceActive ? "destructive" : "default"}
-                    onClick={() => setVoiceActive(!voiceActive)}
-                    className="flex-shrink-0"
+                    onClick={() => setVoiceActive(true)}
+                    className="flex-shrink-0 bg-gradient-hero"
                   >
                     <Mic className="w-4 h-4 mr-2" />
-                    {voiceActive ? "Stop Listening" : "Start Voice Chat"}
+                    Open Voice Assistant
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => setVoiceActive(true)}
+                    className="flex-shrink-0"
+                  >
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    Open Chatbot
                   </Button>
                   <div className="text-muted-foreground">
-                    {voiceActive ? "🔴 Listening in Hindi..." : "Available in Hindi, English, Telugu, Tamil, and more"}
+                    Available in Hindi, English, Telugu, Tamil
                   </div>
                 </div>
                 <div className="bg-muted/50 rounded-lg p-4 min-h-[100px]">
                   <div className="flex items-start space-x-3">
                     <MessageCircle className="w-5 h-5 mt-1 text-primary" />
                     <div>
-                      <p className="text-sm text-muted-foreground mb-2">Assistant:</p>
+                      <p className="text-sm text-muted-foreground mb-2">Assistant Preview:</p>
                       <p className="text-sm">
                         नमस्ते! मैं आपकी खेती में मदद के लिए यहाँ हूँ। आप मुझसे फसल की कीमतें, बीमारी की जांच, या सरकारी योजनाओं के बारे में पूछ सकते हैं।
                       </p>
@@ -435,6 +443,13 @@ const FarmerDashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Voice Assistant Modal */}
+      <VoiceAssistantModal
+        isOpen={voiceActive}
+        onClose={() => setVoiceActive(false)}
+        userType="farmer"
+      />
     </div>
   );
 };

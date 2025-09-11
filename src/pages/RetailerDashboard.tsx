@@ -16,14 +16,17 @@ import {
   Bell,
   Star,
   MapPin,
-  Phone
+  Phone,
+  Mic
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import VoiceAssistantModal from "@/components/VoiceAssistantModal";
 
 const RetailerDashboard = () => {
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [negotiationPrice, setNegotiationPrice] = useState("");
+  const [assistantOpen, setAssistantOpen] = useState(false);
 
   // Mock data
   const products = [
@@ -345,16 +348,37 @@ const RetailerDashboard = () => {
               <CardHeader>
                 <CardTitle className="flex items-center">
                   <MessageSquare className="w-5 h-5 mr-2" />
-                  Business Assistant
+                  Multilingual Voice & Chat Assistant
                 </CardTitle>
               </CardHeader>
               <CardContent>
+                <div className="flex items-center space-x-4 mb-4">
+                  <Button 
+                    onClick={() => setAssistantOpen(true)}
+                    className="flex-shrink-0 bg-gradient-hero"
+                  >
+                    <Mic className="w-4 h-4 mr-2" />
+                    Open Voice Assistant
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => setAssistantOpen(true)}
+                    className="flex-shrink-0"
+                  >
+                    <MessageSquare className="w-4 h-4 mr-2" />
+                    Open Chatbot
+                  </Button>
+                  <div className="text-muted-foreground">
+                    Available in Hindi, English, Telugu, Tamil
+                  </div>
+                </div>
+
                 <div className="bg-muted/50 rounded-lg p-6 min-h-[300px]">
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
                       <MessageSquare className="w-5 h-5 mt-1 text-primary" />
                       <div>
-                        <p className="text-sm text-muted-foreground mb-2">Assistant:</p>
+                        <p className="text-sm text-muted-foreground mb-2">Assistant Preview:</p>
                         <p className="text-sm mb-4">
                           Hello! I can help you find the best suppliers, negotiate prices, and manage your inventory. What would you like assistance with today?
                         </p>
@@ -362,13 +386,21 @@ const RetailerDashboard = () => {
                     </div>
                     
                     <div className="grid md:grid-cols-2 gap-4">
-                      <Button variant="outline" className="text-left justify-start h-auto py-4">
+                      <Button 
+                        variant="outline" 
+                        className="text-left justify-start h-auto py-4"
+                        onClick={() => setAssistantOpen(true)}
+                      >
                         <div>
                           <p className="font-semibold">Find Best Prices</p>
                           <p className="text-sm text-muted-foreground">Compare prices across suppliers</p>
                         </div>
                       </Button>
-                      <Button variant="outline" className="text-left justify-start h-auto py-4">
+                      <Button 
+                        variant="outline" 
+                        className="text-left justify-start h-auto py-4"
+                        onClick={() => setAssistantOpen(true)}
+                      >
                         <div>
                           <p className="font-semibold">Quality Analysis</p>
                           <p className="text-sm text-muted-foreground">Check supplier ratings & reviews</p>
@@ -382,6 +414,13 @@ const RetailerDashboard = () => {
           </TabsContent>
         </Tabs>
       </div>
+
+      {/* Voice Assistant Modal */}
+      <VoiceAssistantModal
+        isOpen={assistantOpen}
+        onClose={() => setAssistantOpen(false)}
+        userType="retailer"
+      />
     </div>
   );
 };
