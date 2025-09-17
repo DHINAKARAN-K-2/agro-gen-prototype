@@ -21,8 +21,14 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import VoiceAssistantModal from "@/components/VoiceAssistantModal";
+import ResponsiveHeader from "@/components/ResponsiveHeader";
 
-const RetailerDashboard = () => {
+interface RetailerDashboardProps {
+  currentLanguage: string;
+  onLanguageChange: () => void;
+}
+
+const RetailerDashboard = ({ currentLanguage, onLanguageChange }: RetailerDashboardProps) => {
   const navigate = useNavigate();
   const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [negotiationPrice, setNegotiationPrice] = useState("");

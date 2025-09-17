@@ -6,8 +6,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Upload, ArrowLeft } from "lucide-react";
+import ResponsiveHeader from "@/components/ResponsiveHeader";
 
-const Register = () => {
+interface RegisterProps {
+  currentLanguage: string;
+  onLanguageChange: () => void;
+}
+
+const Register = ({ currentLanguage, onLanguageChange }: RegisterProps) => {
   const { userType } = useParams();
   const navigate = useNavigate();
   const [file, setFile] = useState<File | null>(null);
@@ -42,22 +48,15 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted p-6">
-      <div className="max-w-2xl mx-auto">
-        <div className="flex items-center mb-8">
-          <Button 
-            variant="outline" 
-            size="sm" 
-            onClick={() => navigate(-1)}
-            className="mr-4"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back
-          </Button>
-          <h1 className="text-2xl font-bold text-foreground">
-            🟢 Agrogen
-          </h1>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted">
+      <ResponsiveHeader 
+        title="Agrogen"
+        showBackButton={true}
+        onBackClick={() => navigate('/')}
+        onLanguageChange={onLanguageChange}
+        currentLanguage={currentLanguage}
+      />
+      <div className="max-w-2xl mx-auto p-6">
 
         <Card className="shadow-elevated">
           <CardHeader className="text-center pb-8">

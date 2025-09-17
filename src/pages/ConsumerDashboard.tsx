@@ -21,8 +21,14 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import VoiceAssistantModal from "@/components/VoiceAssistantModal";
+import ResponsiveHeader from "@/components/ResponsiveHeader";
 
-const ConsumerDashboard = () => {
+interface ConsumerDashboardProps {
+  currentLanguage: string;
+  onLanguageChange: () => void;
+}
+
+const ConsumerDashboard = ({ currentLanguage, onLanguageChange }: ConsumerDashboardProps) => {
   const navigate = useNavigate();
   const [cart, setCart] = useState<any[]>([]);
   const [assistantOpen, setAssistantOpen] = useState(false);

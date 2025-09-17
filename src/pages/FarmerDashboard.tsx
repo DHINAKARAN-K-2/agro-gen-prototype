@@ -22,8 +22,15 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import VoiceAssistantModal from "@/components/VoiceAssistantModal";
+import ResponsiveHeader from "@/components/ResponsiveHeader";
+import GovernmentSchemes from "@/components/GovernmentSchemes";
 
-const FarmerDashboard = () => {
+interface FarmerDashboardProps {
+  currentLanguage: string;
+  onLanguageChange: () => void;
+}
+
+const FarmerDashboard = ({ currentLanguage, onLanguageChange }: FarmerDashboardProps) => {
   const navigate = useNavigate();
   const [diseaseFile, setDiseaseFile] = useState<File | null>(null);
   const [voiceActive, setVoiceActive] = useState(false);

@@ -327,25 +327,25 @@ const VoiceAssistantModal = ({ isOpen, onClose, userType }: VoiceAssistantModalP
     // Simple keyword matching for responses
     const lowerText = userText.toLowerCase();
     if (lowerText.includes('price') || lowerText.includes('cost') || lowerText.includes('भाव') || lowerText.includes('விலை') || lowerText.includes('ధర')) {
-      return langResponses?.price || "I can help you with price information.";
+      return (langResponses as any)?.price || "I can help you with price information.";
     }
     if (lowerText.includes('disease') || lowerText.includes('बीमारी') || lowerText.includes('நோய்') || lowerText.includes('వ్యాధి')) {
-      return langResponses?.disease || "I can help with disease detection.";
+      return (langResponses as any)?.disease || "I can help with disease detection.";
     }
     if (lowerText.includes('scheme') || lowerText.includes('योजना') || lowerText.includes('திட்டம்') || lowerText.includes('పథకం')) {
-      return langResponses?.scheme || "I can provide information about government schemes.";
+      return (langResponses as any)?.scheme || "I can provide information about government schemes.";
     }
     if (lowerText.includes('supplier') || lowerText.includes('आपूर्तिकर्ता') || lowerText.includes('சப்ளையர்') || lowerText.includes('సప్లైయర్')) {
-      return langResponses?.supplier || "I can help you find suppliers.";
+      return (langResponses as any)?.supplier || "I can help you find suppliers.";
     }
     if (lowerText.includes('organic') || lowerText.includes('जैविक') || lowerText.includes('இயற்கை') || lowerText.includes('సేంద్రీయ')) {
-      return langResponses?.organic || "I can help you find organic products.";
+      return (langResponses as any)?.organic || "I can help you find organic products.";
     }
     if (lowerText.includes('order') || lowerText.includes('ऑर्डर') || lowerText.includes('ஆர்டர்') || lowerText.includes('ఆర్డర్')) {
-      return langResponses?.order || "I can help you track your orders.";
+      return (langResponses as any)?.order || "I can help you track your orders.";
     }
     if (lowerText.includes('seasonal') || lowerText.includes('मौसमी') || lowerText.includes('பருவகால') || lowerText.includes('కాలానుగుణ')) {
-      return langResponses?.seasonal || "I can show you seasonal products.";
+      return (langResponses as any)?.seasonal || "I can show you seasonal products.";
     }
 
     // Default response

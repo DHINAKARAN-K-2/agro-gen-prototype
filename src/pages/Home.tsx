@@ -3,8 +3,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import { Sprout, Users, ShoppingCart } from "lucide-react";
 import heroImage from "@/assets/hero-agriculture.jpg";
+import ResponsiveHeader from "@/components/ResponsiveHeader";
 
-const Home = () => {
+interface HomeProps {
+  currentLanguage: string;
+  onLanguageChange: () => void;
+}
+
+const Home = ({ currentLanguage, onLanguageChange }: HomeProps) => {
   const navigate = useNavigate();
 
   const userTypes = [
@@ -33,6 +39,10 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <ResponsiveHeader 
+        onLanguageChange={onLanguageChange}
+        currentLanguage={currentLanguage}
+      />
       {/* Hero Section */}
       <section 
         className="relative h-screen flex items-center justify-center bg-cover bg-center"
